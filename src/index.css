@@ -1,5 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Roboto Mono", monospace;
   line-height: 1.5;
   font-weight: 400;
 
@@ -53,21 +60,6 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-input {
-  width: 400px;
-  padding-inline: 0.35em;
-  padding-block: 1em;
-  background-color: #fff;
-  color: #000;
-  font-size: 1.2rem;
-}
-
-/* Utility classes */
-
-.utility_flex {
-  display: flex;
 }
 
 @media (prefers-color-scheme: light) {

@@ -4,3 +4,24 @@
   padding: 2rem;
   text-align: center;
 }
+
+/* Utility classes */
+
+.margin_top {
+  margin-top: 1rem;
+}
+
+.utility_flex_column {
+  display: flex;
+  flex-direction: column;
+}
+
+.utility_flex_row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.utility_flex_row *:not(:first-child) {
+  margin-left: 1rem;
+}

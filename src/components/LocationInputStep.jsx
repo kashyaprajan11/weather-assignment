@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import WeatherResult from "./WeatherResult";
+import "./styles.css";
 
 function LocationInputStep() {
   const [location, setLocation] = useState("");
@@ -12,33 +13,40 @@ function LocationInputStep() {
   // Get the data for the searched city
   const getValues = async () => {
     setIsLoading(true);
-    // 1: To get the city key from the api
-    const cityData = await axios.get(
-      "https://dataservice.accuweather.com/locations/v1/cities/search",
-      {
-        params: {
-          apikey: API_KEY,
-          q: location,
-        },
-      }
-    );
-    const countryId = cityData?.data[0]?.AdministrativeArea?.CountryID;
-    const cityKey = cityData?.data[0]?.Key;
+    try {
+      // 1: To get the city key from the api
+      const cityData = await axios.get(
+        "https://dataservice.accuweather.com/locations/v1/cities/search",
+        {
+          params: {
+            apikey: API_KEY,
+            q: location,
+          },
+        }
+      );
+      const countryId = cityData?.data[0]?.AdministrativeArea?.CountryID;
+      const cityKey = cityData?.data[0]?.Key;
 
-    // 2: To get the weather conditions from the api
-    const tempData = await axios.get(
-      `https://dataservice.accuweather.com/currentconditions/v1/${cityKey}`,
-      {
-        params: {
-          apikey: API_KEY,
-        },
-      }
-    );
+      console.log(cityKey);
 
-    const cityTemp = tempData?.data[0];
+      // 2: To get the weather conditions from the api
+      const tempData = await axios.get(
+        `https://dataservice.accuweather.com/currentconditions/v1/${cityKey}`,
+        {
+          params: {
+            apikey: API_KEY,
+          },
+        }
+      );
 
-    setLocation((prev) => `${prev},${countryId}`);
-    setData(cityTemp);
+      const cityTemp = tempData?.data[0];
+
+      setLocation((prev) => `${prev},${countryId}`);
+      setData(cityTemp);
+    } catch (err) {
+      alert("A valid location is required");
+    }
+
     setIsLoading(false);
   };
 
@@ -59,14 +67,16 @@ function LocationInputStep() {
   return (
     <>
       {!data && (
-        <div className="utility_flex">
+        <div className="card utility_flex_column">
           <input
             type="text"
-            placeholder="Location"
+            placeholder="Enter City Name"
             value={location}
             onChange={handleChange}
           />
-          <button onClick={getValues}>Search</button>
+          <button className="margin_top" onClick={getValues}>
+            Search
+          </button>
         </div>
       )}
       {!!data && (
