@@ -176,9 +176,11 @@ function LocationInputStep() {
           handleBack={handleBack}
         />
       )}
-      <p className="margin_top" style={{ fontSize: "0.6rem" }}>
-        (press Enter after entering the location to search)
-      </p>
+      {!data && (
+        <p className="margin_top" style={{ fontSize: "0.6rem" }}>
+          (press Enter after entering the location to search)
+        </p>
+      )}
     </>
   );
 }
