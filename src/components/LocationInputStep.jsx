@@ -6,10 +6,6 @@ import "./styles.css";
 
 function LocationInputStep() {
   const [location, setLocation] = useState("");
-  const [locationObj, setLocationObj] = useState({
-    latitude: null,
-    longitude: null,
-  });
   const [_error, setError] = useState("");
   const [enterKeyPressed, setEnterKeyPressed] = useState(false);
   const [isLoding, setIsLoading] = useState(false);
@@ -100,13 +96,12 @@ function LocationInputStep() {
     setIsLoading(true);
     try {
       const coords = await getLocationValues();
-      setLocationObj(coords);
       const cityData = await axios.get(
         "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
         {
           params: {
             apikey: API_KEY,
-            q: `${locationObj.latitude},${locationObj.longitude}`,
+            q: `${coords?.latitude},${coords?.longitude}`,
           },
         }
       );
@@ -151,7 +146,7 @@ function LocationInputStep() {
   };
 
   if (isLoding) {
-    return <div> Loading</div>;
+    return <p className="loading"> Loading</p>;
   }
 
   return (
@@ -164,6 +159,11 @@ function LocationInputStep() {
             value={location}
             onChange={handleChange}
           />
+          <div className="margin_top utility_flex_row">
+            <hr style={{ width: "40%" }} />
+            <p>or</p>
+            <hr style={{ width: "40%" }} />
+          </div>
           <button className="margin_top" onClick={getCityKeyFromLongAndLat}>
             Get Device Location
           </button>
@@ -176,6 +176,9 @@ function LocationInputStep() {
           handleBack={handleBack}
         />
       )}
+      <p className="margin_top" style={{ fontSize: "0.6rem" }}>
+        (press Enter after entering the location to search)
+      </p>
     </>
   );
 }

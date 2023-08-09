@@ -31,6 +31,10 @@ input {
   font-weight: 800;
 }
 
+.loading {
+  font-size: 1.2rem;
+}
+
 .vertical-line {
   width: 1px; /* Width of the line */
   height: 50px; /* Height of the line */
