@@ -14,7 +14,7 @@ function LocationInputStep() {
     setIsLoading(true);
     // 1: To get the city key from the api
     const cityData = await axios.get(
-      "http://dataservice.accuweather.com/locations/v1/cities/search",
+      "https://dataservice.accuweather.com/locations/v1/cities/search",
       {
         params: {
           apikey: API_KEY,
@@ -27,7 +27,7 @@ function LocationInputStep() {
 
     // 2: To get the weather conditions from the api
     const tempData = await axios.get(
-      `http://dataservice.accuweather.com/currentconditions/v1/${cityKey}`,
+      `https://dataservice.accuweather.com/currentconditions/v1/${cityKey}`,
       {
         params: {
           apikey: API_KEY,
