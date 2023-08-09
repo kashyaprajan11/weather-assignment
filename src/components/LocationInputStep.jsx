@@ -97,7 +97,7 @@ function LocationInputStep() {
     try {
       const coords = await getLocationValues();
       const cityData = await axios.get(
-        "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
+        "https://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
         {
           params: {
             apikey: API_KEY,
