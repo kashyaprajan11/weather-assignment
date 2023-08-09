@@ -2,7 +2,7 @@ This is a [React](https://react.dev/) project bootstrapped with [Vite](https://v
 
 # Weather Application with React + Vite
 
-Live Preview :- [https://weather-assignment-chi.vercel.app/] Click Here
+Live Preview :- [Click Here] (https://weather-assignment-chi.vercel.app/)
 
 The Live link is hosted free of cost on [https://vercel.com/] Vercel
 
