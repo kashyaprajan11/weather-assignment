@@ -1,9 +1,13 @@
 .card {
   background-color: #fff;
   border-radius: 5px;
-  padding: 1em;
+  padding-top: 1em;
   color: #000;
   min-width: 300px;
+}
+
+.card > *:not(hr) {
+  padding-inline: 1em;
 }
 
 input {
@@ -25,4 +29,11 @@ input {
 .temperature-text {
   font-size: 2rem;
   font-weight: 800;
+}
+
+.vertical-line {
+  width: 1px; /* Width of the line */
+  height: 50px; /* Height of the line */
+  background-color: rgba(0, 0, 0, 0.6); /* Color of the line */
+  border: none; /* Remove the default border */
 }

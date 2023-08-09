@@ -1,5 +1,8 @@
 import { BiArrowBack } from "react-icons/bi";
 import { IoLocationOutline } from "react-icons/io5";
+import { BsSun } from "react-icons/bs";
+import { BsFillMoonFill } from "react-icons/bs";
+import { FaTemperatureHigh } from "react-icons/fa";
 
 function WeatherResult({ location, data, handleBack }) {
   const temp = data?.Temperature?.Metric?.Value;
@@ -11,7 +14,11 @@ function WeatherResult({ location, data, handleBack }) {
   const imgLink = `https://developer.accuweather.com/sites/default/files/${iconNumber}-s.png`;
   return (
     <div class="card utility_flex_column">
-      <div class="go-back-box utility_flex_row" onClick={handleBack}>
+      <div
+        class="go-back-box utility_flex_row"
+        style={{ justifyContent: "flex-start" }}
+        onClick={handleBack}
+      >
         <BiArrowBack />
         <p>Weather App</p>
       </div>
@@ -26,10 +33,25 @@ function WeatherResult({ location, data, handleBack }) {
         <p>{location}</p>
       </div>
 
-      <p>{isDay ? "Day" : "Night"}</p>
-      <p>
-        {tempInFah} <span>&#176;</span> F
-      </p>
+      <hr style={{ marginTop: "1rem", backgroundColor: "rgba(0,0,0,0.5)" }} />
+      <div
+        className="utility_flex_row"
+        style={{
+          justifyContent: "space-between",
+        }}
+      >
+        <div className="utility_flex_row">
+          {isDay ? <BsSun /> : <BsFillMoonFill />}
+          <p>{isDay ? "Day" : "Night"}</p>
+        </div>
+        <hr className="vertical-line" />
+        <div className="utility_flex_row">
+          <FaTemperatureHigh />
+          <p>
+            {tempInFah} <span>&#176;</span> F
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
