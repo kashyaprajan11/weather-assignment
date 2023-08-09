@@ -1,8 +1,15 @@
-# React + Vite
+This is a [React](https://react.dev/) project bootstrapped with [Vite](https://vitejs.dev/)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Weather Application with React + Vite
 
-Currently, two official plugins are available:
+Live Preview :- [https://weather-assignment-chi.vercel.app/] Click Here
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The Live link is hosted free of cost on [https://vercel.com/] Vercel
+
+To run the project on your local environment:
+
+- Get an api key from [https://developer.accuweather.com/] AccuWeather
+- Create a .env file
+- Define a variable called "VITE_API_KEY" in .env and add your api key value
+- Open terminal and run - npm install - npm run dev
+  -Go to [http://127.0.0.1:5173/] http://127.0.0.1:5173/ for using the application.
