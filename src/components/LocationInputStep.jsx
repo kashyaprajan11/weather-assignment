@@ -79,6 +79,10 @@ function LocationInputStep() {
             apikey: API_KEY,
             q: location,
           },
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          },
         }
       );
       const countryId = cityData?.data[0]?.AdministrativeArea?.CountryID;
@@ -103,6 +107,10 @@ function LocationInputStep() {
             apikey: API_KEY,
             q: `${coords?.latitude},${coords?.longitude}`,
           },
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+          },
         }
       );
 
@@ -126,6 +134,10 @@ function LocationInputStep() {
         {
           params: {
             apikey: API_KEY,
+          },
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
           },
         }
       );
