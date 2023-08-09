@@ -64,6 +64,12 @@ input {
   font-size: 1.2rem;
 }
 
+/* Utility classes */
+
+.utility_flex {
+  display: flex;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
