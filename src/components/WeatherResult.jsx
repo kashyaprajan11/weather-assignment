@@ -13,9 +13,9 @@ function WeatherResult({ location, data, handleBack }) {
 
   const imgLink = `https://developer.accuweather.com/sites/default/files/${iconNumber}-s.png`;
   return (
-    <div class="card utility_flex_column">
+    <div className="card utility_flex_column">
       <div
-        class="go-back-box utility_flex_row"
+        className="go-back-box utility_flex_row"
         style={{ justifyContent: "flex-start" }}
         onClick={handleBack}
       >
@@ -28,7 +28,7 @@ function WeatherResult({ location, data, handleBack }) {
         {temp} <span>&#176;</span> C
       </p>
       <p style={{ fontWeight: 500 }}>{weatherText}</p>
-      <div class="utility_flex_row margin_top">
+      <div className="utility_flex_row margin_top">
         <IoLocationOutline />
         <p>{location}</p>
       </div>
