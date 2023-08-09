@@ -11,5 +11,7 @@ To run the project on your local environment:
 - Get an api key from [AccuWeather](https://developer.accuweather.com/)
 - Create a .env file
 - Define a variable called "VITE_API_KEY" in .env and add your api key value
-- Open terminal and run - npm install - npm run dev
-  -Go to [http://127.0.0.1:5173/](http://127.0.0.1:5173/) for using the application.
+- Open terminal and run
+- npm install
+- npm run dev
+- Go to [http://127.0.0.1:5173/](http://127.0.0.1:5173/) for using the application.
