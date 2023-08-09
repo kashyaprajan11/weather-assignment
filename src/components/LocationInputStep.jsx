@@ -50,26 +50,31 @@ function LocationInputStep() {
 
   // To get the longitude and latitude of the client.
   const getLocationValues = () => {
-    if (!navigator.geolocation) {
-      setError("Geolocation is not supported by your browser");
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLocationObj({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        });
-      },
-      () => {
-        setError("Unable to retrieve your location");
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        setError("Geolocation is not supported by your browser");
+        reject(new Error("Geolocation is not supported by your browser"));
       }
-    );
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const coords = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          };
+          resolve(coords);
+        },
+        () => {
+          setError("Unable to retrieve your location");
+          reject(new Error("Unable to retrieve your location"));
+        }
+      );
+    });
   };
 
   // To get the city key from location input field
   const getCityKeyFromLocation = async () => {
+    setIsLoading(true);
     try {
       const cityData = await axios.get(
         "https://dataservice.accuweather.com/locations/v1/cities/search",
@@ -92,8 +97,10 @@ function LocationInputStep() {
 
   // Get the city key from the longitude and latitude of the client
   const getCityKeyFromLongAndLat = async () => {
-    getLocationValues();
+    setIsLoading(true);
     try {
+      const coords = await getLocationValues();
+      setLocationObj(coords);
       const cityData = await axios.get(
         "http://dataservice.accuweather.com/locations/v1/cities/geoposition/search",
         {
@@ -157,7 +164,6 @@ function LocationInputStep() {
             value={location}
             onChange={handleChange}
           />
-          <button className="margin_top">Check</button>
           <button className="margin_top" onClick={getCityKeyFromLongAndLat}>
             Get Device Location
           </button>
