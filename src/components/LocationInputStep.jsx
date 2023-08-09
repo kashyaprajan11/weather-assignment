@@ -1,14 +1,40 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useState } from "react";
 
 import WeatherResult from "./WeatherResult";
 import "./styles.css";
 
 function LocationInputStep() {
   const [location, setLocation] = useState("");
+  const [locationObj, setLocationObj] = useState({
+    latitude: null,
+    longitude: null,
+  });
+  const [error, setError] = useState("");
   const [isLoding, setIsLoading] = useState(false);
   const [data, setData] = useState(null);
   const API_KEY = import.meta.env.VITE_API_KEY;
+
+  const getLocationValues = () => {
+    if (!navigator.geolocation) {
+      setError("Geolocation is not supported by your browser");
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setLocationObj({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      () => {
+        setError("Unable to retrieve your location");
+      }
+    );
+  };
+
+  console.log(locationObj);
 
   // Get the data for the searched city
   const getValues = async () => {
@@ -67,15 +93,15 @@ function LocationInputStep() {
   return (
     <>
       {!data && (
-        <div className="card utility_flex_column">
+        <div className="card utility_flex_column" style={{ padding: "1em" }}>
           <input
             type="text"
             placeholder="Enter City Name"
             value={location}
             onChange={handleChange}
           />
-          <button className="margin_top" onClick={getValues}>
-            Search
+          <button className="margin_top" onClick={getLocationValues}>
+            Get Device Location
           </button>
         </div>
       )}
